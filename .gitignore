@@ -1,0 +1,7 @@
+node_modules
+uploads
+.vscode
+.env
+dist
+upload
+.DS_Store
