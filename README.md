@@ -45,6 +45,22 @@ Para instalar:
 yarn
 ```
 
+.ENV com essas variáveis
+```
+PORT=3333
+
+#SCHOOL
+DB_DIALECT='postgres'
+DB_HOST='host do banco'
+DB_USER='user do banco'
+DB_PORT='port do banco (5432)'
+DB_PASS='senha do banco'
+DB_DATABASE='nome do banco'
+
+#JWT
+JWT_KEY='chave secreta do JWT'
+```
+
 ## ☕ Usando API Start Project
 
 Para usar API Start Project:
