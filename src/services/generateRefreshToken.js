@@ -1,4 +1,4 @@
-const RefreshToken = require("../app/models/RefreshToken");
+import RefreshToken from "../app/models/RefreshToken";
 
 async function generateRefreshToken(id_user) {
   const refreshToken = await RefreshToken.create({
@@ -7,4 +7,4 @@ async function generateRefreshToken(id_user) {
   return refreshToken.refresh_token;
 }
 
-module.exports = generateRefreshToken;
+export default generateRefreshToken;

@@ -1,8 +1,9 @@
-require("dotenv").config();
-const express = require("express");
-const openRoutes = require("./routes/openRoutes");
-const authRoutes = require("./routes/authRoutes");
-require("./database");
+import 'dotenv/config';
+import express from 'express';
+import cors from 'cors';
+import openRoutes from './routes/openRoutes';
+import authRoutes from './routes/authRoutes';
+import './database';
 
 class App {
   constructor() {
@@ -13,6 +14,14 @@ class App {
 
   middlewares() {
     this.server.use(express.json());
+    this.server.use(express.urlencoded({ extended: true }));
+    this.server.use(
+      cors({
+        origin: 'http://localhost:3000',
+        credentials: true, //access-control-allow-credentials:true
+        // optionSuccessStatus: 200,
+      })
+    );
   }
 
   routes() {
@@ -20,4 +29,4 @@ class App {
     this.server.use(authRoutes);
   }
 }
-module.exports = new App().server;
+export default new App().server;

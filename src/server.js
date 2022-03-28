@@ -1,7 +1,7 @@
-const App = require("./app");
+import app from './app';
 
 const port = process.env.PORT;
 
-App.listen(port, () => {
+app.listen(port, () => {
   console.log(`Rodando API em localhost:${port}...`);
 });

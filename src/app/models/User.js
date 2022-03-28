@@ -1,6 +1,6 @@
-const { Model, Sequelize } = require("sequelize");
-const bcrypt = require("bcrypt");
-const { v4: uuidv4 } = require("uuid");
+import Sequelize, { Model } from 'sequelize';
+import bcrypt from 'bcrypt';
+import { v4 as uuidv4 } from 'uuid';
 
 class User extends Model {
   static init(sequelize) {
@@ -31,9 +31,7 @@ class User extends Model {
           allowNull: false,
           unique: true,
         },
-        password: {
-          type: Sequelize.VIRTUAL,
-        },
+        password: Sequelize.VIRTUAL,
         password_hash: Sequelize.STRING,
         id_user_type: {
           type: Sequelize.INTEGER,
@@ -42,10 +40,10 @@ class User extends Model {
       },
       {
         sequelize,
-        tableName: "users",
+        tableName: 'users',
       }
     );
-    this.addHook("beforeSave", async (user) => {
+    this.addHook('beforeSave', async (user) => {
       if (user.password) {
         user.password_hash = await bcrypt.hash(user.password, 8);
       }
@@ -55,7 +53,7 @@ class User extends Model {
   }
   static associate(models) {
     this.belongsTo(models.UserType, {
-      foreignKey: "id_user_type",
+      foreignKey: 'id_user_type',
     });
   }
 
@@ -63,4 +61,4 @@ class User extends Model {
     return bcrypt.compare(password, this.password_hash);
   }
 }
-module.exports = User;
+export default User;

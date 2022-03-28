@@ -1,16 +1,16 @@
-const User = require("../../app/models/User");
-const UserType = require("../../app/models/UserType");
+import User from '../../app/models/User';
+import UserType from '../../app/models/UserType';
 
-module.exports = {
+class UserControler {
   async getList(req, res) {
     const users = await User.findAll({
-      includes: [{ model: UserType, attributes: ["description"] }],
+      includes: [{ model: UserType, attributes: ['description'] }],
     });
     if (users.length) {
       return res.json(users);
     }
-    return res.status(204).json({ msg: "Nenhum usuário encontrado" });
-  },
+    return res.status(204).json({ msg: 'Nenhum usuário encontrado' });
+  }
   async insert(req, res) {
     const { uuid, name, username, email, password, id_user_type } = req.body;
     try {
@@ -24,7 +24,8 @@ module.exports = {
       });
       return res.json(user);
     } catch (err) {
-      return res.status(400).json({ msg: "Erro ao gerar usuário. " });
+      return res.status(400).json({ msg: 'Erro ao gerar usuário. ' });
     }
-  },
-};
+  }
+}
+export default new UserControler();

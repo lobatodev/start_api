@@ -1,16 +1,16 @@
-const jwt = require("jsonwebtoken");
+import jwt from 'jsonwebtoken';
 
 function isAuthenticated(req, res, next) {
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
-    return res.status(401).json({ msg: "Token não fornecido" });
+    return res.status(401).json({ msg: 'Token não fornecido' });
   }
 
-  const [scheme, token] = authHeader.split(" ");
+  const [scheme, token] = authHeader.split(' ');
 
   if (!/^Bearer$/i.test(scheme)) {
-    return res.status(401).send({ msg: "Token inválido" });
+    return res.status(401).send({ msg: 'Token inválido' });
   }
 
   try {
@@ -19,8 +19,7 @@ function isAuthenticated(req, res, next) {
     req.userUUID = decoded.sub;
     return next();
   } catch (err) {
-    return res.status(401).json({ msg: "Token inválido" });
+    return res.status(401).json({ msg: 'Token inválido' });
   }
 }
-
-module.exports = isAuthenticated;
+export default isAuthenticated;

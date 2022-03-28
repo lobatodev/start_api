@@ -1,6 +1,6 @@
-const { Model, Sequelize } = require("sequelize");
-const { v4: uuidv4 } = require("uuid");
-const dayjs = require("dayjs");
+import Sequelize, { Model } from 'sequelize';
+import { v4 as uuidv4 } from 'uuid';
+import dayjs from 'dayjs';
 
 class RefreshToken extends Model {
   static init(sequelize) {
@@ -24,20 +24,20 @@ class RefreshToken extends Model {
       },
       {
         sequelize,
-        tableName: "refresh_tokens",
+        tableName: 'refresh_tokens',
       }
     );
-    this.addHook("beforeCreate", async (model) => {
+    this.addHook('beforeCreate', async (model) => {
       await this.destroy({ where: { id_user: model.id_user } });
       model.refresh_token = uuidv4();
-      model.expires_in = dayjs().add(3, "day").unix();
+      model.expires_in = dayjs().add(3, 'day').unix();
     });
     return this;
   }
   static associate(models) {
     this.belongsTo(models.User, {
-      foreignKey: "id_user",
+      foreignKey: 'id_user',
     });
   }
 }
-module.exports = RefreshToken;
+export default RefreshToken;

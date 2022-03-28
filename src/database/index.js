@@ -1,11 +1,9 @@
-const Sequelize = require("sequelize");
-const dbConfigSchool = require("../config/database");
+import fs from 'fs';
+import path from 'path';
+import Sequelize from 'sequelize';
+import configDB from '../config/database';
 
-const User = require("../app/models/User");
-const UserType = require("../app/models/UserType");
-const RefreshToken = require("../app/models/RefreshToken");
-
-const models = [User, UserType, RefreshToken];
+const models = [];
 
 class Database {
   constructor() {
@@ -13,9 +11,14 @@ class Database {
   }
 
   init() {
-    this.connection = new Sequelize(dbConfigSchool);
-
-    models.map((model) => model.init(this.connection));
+    this.connection = new Sequelize(configDB);
+    const dir = path.join(__dirname, '..', 'app', 'models');
+    fs.readdirSync(dir).forEach((file) => {
+      const modelDir = path.join(dir, file);
+      const model = require(modelDir);
+      models.push(model);
+    });
+    models.map((model) => model?.default.init(this.connection));
 
     models.map(
       (model) => model.associate && model.associate(this.connection.models)
@@ -23,4 +26,6 @@ class Database {
   }
 }
 
-module.exports = new Database();
+export default new Database();
+
+export const connection = new Sequelize(configDB);

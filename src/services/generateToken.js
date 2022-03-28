@@ -1,7 +1,7 @@
-const Jwt = require("jsonwebtoken");
-const jwtConfig = require("../config/jwt");
-const User = require("../app/models/User");
-const RefreshToken = require("../app/models/RefreshToken");
+import Jwt from "jsonwebtoken";
+import jwtConfig from "../config/jwt";
+import User from "../app/models/User";
+import RefreshToken from "../app/models/RefreshToken";
 
 async function generateToken(playload = {}, uuid, byRefreshToken = false) {
   if (byRefreshToken) {
@@ -19,5 +19,4 @@ async function generateToken(playload = {}, uuid, byRefreshToken = false) {
   });
   return token;
 }
-
-module.exports = generateToken;
+export default generateToken;

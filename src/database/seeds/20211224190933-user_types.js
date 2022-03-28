@@ -8,10 +8,13 @@ module.exports = {
         description: "Administrador",
       },
       {
-        description: "Usuário",
+        description: "Psicólogo",
       },
       {
-        description: "Cliente",
+        description: "Paciente",
+      },
+      {
+        description: "Secretária",
       },
     ]);
   },

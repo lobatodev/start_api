@@ -24,13 +24,35 @@ module.exports = {
         updated_at: new Date(),
       },
       {
-        username: "user",
-        name: "Usuário",
-        email: "user@mail.com",
+        username: "psicologo",
+        name: "Psicólogo",
+        email: "psicologo@mail.com",
         password_hash:
           "$2a$08$0Zx2UTdcd7pvHKBspWB5KecXRgFSVP1Xak1t.JLF.Ac679L/BGRrG",
         id_user_type: 3,
         uuid: "bc43d264-25fb-4076-9450-a318055ee202",
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        username: "paciente",
+        name: "Paciente",
+        email: "paciente@mail.com",
+        password_hash:
+          "$2a$08$0Zx2UTdcd7pvHKBspWB5KecXRgFSVP1Xak1t.JLF.Ac679L/BGRrG",
+        id_user_type: 4,
+        uuid: "bc43d264-25fb-4076-9450-a318055ee203",
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        username: "secretaria",
+        name: "Secretária",
+        email: "secretaria@mail.com",
+        password_hash:
+          "$2a$08$0Zx2UTdcd7pvHKBspWB5KecXRgFSVP1Xak1t.JLF.Ac679L/BGRrG",
+        id_user_type: 5,
+        uuid: "bc43d264-25fb-4076-9450-a318055ee204",
         created_at: new Date(),
         updated_at: new Date(),
       },
